@@ -1,0 +1,86 @@
+{
+    "shirt": [
+      {
+        "id": 1,
+        "title": "Barcelona AwayAuthetic",
+        "description": "Camisa de visitante del equipo 2024 al 2025",
+        "team": "Barcelona",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/01-Barcelona.webp"
+      },
+      {
+        "id": 2,
+        "title": "Barcelona HomeAuthetic",
+        "description": "Camisa de casa del equipo 2024 al 2025",
+        "team": "Barcelona",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/02-Barcelona.webp"
+      },
+      {
+        "id": 3,
+        "title": "Barcelona HomeAuthetic",
+        "description": "Camisa de casa del equipo 2023 al 2024",
+        "team": "Barcelona",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/03-Barcelona.webp"
+      },
+      {
+        "id": 4,
+        "title": "Real Madrid HomeAuthetic",
+        "description": "Camisa de casa del equipo 2024 al 2025",
+        "team": "Real Madrid",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/01-RealMadrid.webp"
+      },
+      {
+        "id": 5,
+        "title": "Real Madrid AwayAuthetic",
+        "description": "Camisa de visitante del equipo 2024 al 2025",
+        "team": "Real Madrid",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/02-RealMadrid.webp"
+      },
+      {
+        "id": 6,
+        "title": "Real Madrid HomeAuthetic",
+        "description": "Camisa de casa del equipo 2023 al 2024",
+        "team": "Real Madrid",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/03-RealMadrid.webp"
+      },
+      {
+        "id": 7,
+        "title": "Arsenal HomeAuthetic",
+        "description": "Camisa de casa del equipo 2024 al 2025",
+        "team": "Arsenal",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/01-Arsenal.webp"
+      },
+      {
+        "id": 8,
+        "title": "Arsenal AwayAuthetic",
+        "description": "Camisa de visitante del equipo 2024 al 2025",
+        "team": "Arsenal",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/02-Arsenal.webp"
+      },
+      {
+        "id": 9,
+        "title": "Milan HomeAuthetic",
+        "description": "Camisa de casa del equipo 2024 al 2025",
+        "team": "Milan",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/01-Milan.webp"
+      },
+      {
+        "id": 10,
+        "title": "Milan AwayAuthetic",
+        "description": "Camisa de visitante del equipo 2024 al 2025",
+        "team": "Milan",
+        "sizes": "S, M, L, Xl",
+        "src": "/public/02-Milan.webp"
+      }
+     
+
+    ]
+  }
