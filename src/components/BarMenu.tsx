@@ -4,7 +4,7 @@ import { ThemeSwitch } from "@/components/ThemesButton";
 import { supabase } from "@/supabaseClient";
 import { useState, useEffect } from "react";
 
-export const Navbar = ({ onSelectTeam, scrollToFooter }: any) => {
+export const BarMenu = ({ onSelectTeam, scrollToFooter }: any) => {
     const [teams, setTeams] = useState<any[]>([]);
 
     useEffect(() => {

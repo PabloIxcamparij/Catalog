@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/NavBar";
+import { BarMenu } from "@/components/BarMenu";
 import { Image } from "@heroui/image";
 import { coteinerFooter, subtitle } from "@/components/Themes";
 import { useRef } from "react";
@@ -14,7 +14,7 @@ export default function DefaultLayout({ children, onSelectTeam }: any) {
 
   return (
     <div className="relative flex flex-col h-screen">
-      <Navbar onSelectTeam={onSelectTeam} scrollToFooter={scrollToFooter} />
+      <BarMenu onSelectTeam={onSelectTeam} scrollToFooter={scrollToFooter} />
 
       <main className="flex flex-col items-center justify-center gap-5 flex-grow">
         {children}
