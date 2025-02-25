@@ -15,7 +15,7 @@ export default function DefaultLayout({ children, onSelectTeam } : any) {
           rel="noopener noreferrer"
           className="flex items-center justify-center hover:bg-gray-400 h-full w-16 rounded-lg"
         >
-          <Image src="/public/whatsapp.svg" alt="WhatsApp" />
+          <Image src="/whatsapp.svg" alt="WhatsApp" />
         </a>
       </footer>
     </div>
