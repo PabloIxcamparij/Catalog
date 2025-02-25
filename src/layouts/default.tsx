@@ -1,9 +1,11 @@
 import { BarMenu } from "@/components/BarMenu";
 import { Image } from "@heroui/image";
 import { useRef } from "react";
+import { useTheme } from "@/hook/useTheme";
 
 export default function DefaultLayout({ children, onSelectTeam }: any) {
   const footerRef = useRef<HTMLElement | null>(null);
+  const theme = useTheme(); // Obtenemos el tema actual
 
   const scrollToFooter = () => {
     if (footerRef.current) {
@@ -28,13 +30,14 @@ export default function DefaultLayout({ children, onSelectTeam }: any) {
         </p>
 
         <a
-            href="https://wa.me/50663439380"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center hover:bg-green-200 w-20 h-16 rounded-full"
-          >
-            <Image src="/whatsapp.svg" alt="WhatsApp" />
-          </a>
+          href="https://wa.me/50663439380"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex items-center justify-center w-16 h-16 rounded-full 
+            ${theme === "dark" ? "hover:bg-green-600" : "hover:bg-green-200"}`}
+        >
+          <Image src="/whatsapp.svg" alt="WhatsApp" />
+        </a>
       </footer>
     </div>
   );
