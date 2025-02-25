@@ -24,7 +24,6 @@ export default function FormNewShirt() {
     setShirts(updatedShirts);
     localStorage.setItem("shirts", JSON.stringify(updatedShirts));
 
-    setAction(`Nueva camisa añadida: ${JSON.stringify(newShirt)}`);
     e.target.reset(); // Resetear el formulario después de agregar
   };
 
