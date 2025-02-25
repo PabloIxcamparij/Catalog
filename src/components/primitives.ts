@@ -51,3 +51,7 @@ export const subtitle = tv({
     fullWidth: true,
   },
 });
+
+export const coteinerFooter = tv({
+  base: "flex items-center justify-center w-full py-5 mt-10 gap-5 p-6",
+});

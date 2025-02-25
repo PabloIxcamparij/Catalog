@@ -1,19 +1,32 @@
 import { Navbar } from "@/components/navbar";
 import { Image } from "@heroui/image";
+import { coteinerFooter, subtitle } from "@/components/primitives";
+import { useRef } from "react";
 
-export default function DefaultLayout({ children, onSelectTeam } : any) {
+export default function DefaultLayout({ children, onSelectTeam }: any) {
+  const footerRef = useRef<HTMLElement | null>(null);
+
+  const scrollToFooter = () => {
+    if (footerRef.current) {
+      footerRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="relative flex flex-col h-screen">
-      <Navbar onSelectTeam={onSelectTeam} /> {/* Pasamos la función */}
-      <main className="flex flex-col items-center justify-center gap-5">{children}</main>
-      
-      <footer className="w-full bg-gray-500 text-white flex items-center justify-center py-5 mt-10 gap-5">
-        <p className="text-lg">Para cualquier consulta o compra, dirígete al chat </p>
+      <Navbar onSelectTeam={onSelectTeam} scrollToFooter={scrollToFooter} />
+
+      <main className="flex flex-col items-center justify-center gap-5 flex-grow">
+        {children}
+      </main>
+
+      <footer ref={footerRef} className={coteinerFooter()}>
+        <p className={subtitle()}>Para cualquier consulta o compra, dirígete al chat</p>
         <a
           href="https://wa.me/50663439380"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center hover:bg-gray-400 h-full w-16 rounded-lg"
+          className="flex items-center justify-center hover:bg-gray-200 w-20 h-16 rounded-full"
         >
           <Image src="/whatsapp.svg" alt="WhatsApp" />
         </a>

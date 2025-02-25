@@ -17,8 +17,6 @@ export default function IndexPage() {
     } else {
       setFilteredShirts(shirtData.filter((shirt) => shirt.team === selectedTeam));
     }
-    console.log(selectedTeam)
-
   }, [selectedTeam]);
 
   const handleOpenModal = (shirt : any) => {
