@@ -6,7 +6,7 @@
         "description": "Camisa de visitante del equipo 2024 al 2025",
         "team": "Barcelona",
         "sizes": "S, M, L, Xl",
-        "src": "/public/01-Barcelona.webp"
+        "src": "/01-Barcelona.webp"
       },
       {
         "id": 2,
@@ -14,7 +14,7 @@
         "description": "Camisa de casa del equipo 2024 al 2025",
         "team": "Barcelona",
         "sizes": "S, M, L, Xl",
-        "src": "/public/02-Barcelona.webp"
+        "src": "/02-Barcelona.webp"
       },
       {
         "id": 3,
@@ -22,7 +22,7 @@
         "description": "Camisa de casa del equipo 2023 al 2024",
         "team": "Barcelona",
         "sizes": "S, M, L, Xl",
-        "src": "/public/03-Barcelona.webp"
+        "src": "/03-Barcelona.webp"
       },
       {
         "id": 4,
@@ -30,7 +30,7 @@
         "description": "Camisa de casa del equipo 2024 al 2025",
         "team": "Real Madrid",
         "sizes": "S, M, L, Xl",
-        "src": "/public/01-RealMadrid.webp"
+        "src": "/01-RealMadrid.webp"
       },
       {
         "id": 5,
@@ -38,7 +38,7 @@
         "description": "Camisa de visitante del equipo 2024 al 2025",
         "team": "Real Madrid",
         "sizes": "S, M, L, Xl",
-        "src": "/public/02-RealMadrid.webp"
+        "src": "/02-RealMadrid.webp"
       },
       {
         "id": 6,
@@ -46,7 +46,7 @@
         "description": "Camisa de casa del equipo 2023 al 2024",
         "team": "Real Madrid",
         "sizes": "S, M, L, Xl",
-        "src": "/public/03-RealMadrid.webp"
+        "src": "/03-RealMadrid.webp"
       },
       {
         "id": 7,
@@ -54,7 +54,7 @@
         "description": "Camisa de casa del equipo 2024 al 2025",
         "team": "Arsenal",
         "sizes": "S, M, L, Xl",
-        "src": "/public/01-Arsenal.webp"
+        "src": "/01-Arsenal.webp"
       },
       {
         "id": 8,
@@ -62,7 +62,7 @@
         "description": "Camisa de visitante del equipo 2024 al 2025",
         "team": "Arsenal",
         "sizes": "S, M, L, Xl",
-        "src": "/public/02-Arsenal.webp"
+        "src": "/02-Arsenal.webp"
       },
       {
         "id": 9,
@@ -70,7 +70,7 @@
         "description": "Camisa de casa del equipo 2024 al 2025",
         "team": "Milan",
         "sizes": "S, M, L, Xl",
-        "src": "/public/01-Milan.webp"
+        "src": "/01-Milan.webp"
       },
       {
         "id": 10,
@@ -78,7 +78,7 @@
         "description": "Camisa de visitante del equipo 2024 al 2025",
         "team": "Milan",
         "sizes": "S, M, L, Xl",
-        "src": "/public/02-Milan.webp"
+        "src": "/02-Milan.webp"
       }
      
 
