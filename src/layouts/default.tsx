@@ -1,6 +1,6 @@
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/NavBar";
 import { Image } from "@heroui/image";
-import { coteinerFooter, subtitle } from "@/components/primitives";
+import { coteinerFooter, subtitle } from "@/components/Themes";
 import { useRef } from "react";
 
 export default function DefaultLayout({ children, onSelectTeam }: any) {

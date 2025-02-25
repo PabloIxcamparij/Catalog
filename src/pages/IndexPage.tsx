@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { title, subtitle } from "@/components/primitives";
+import { title, subtitle } from "@/components/Themes";
 import DefaultLayout from "@/layouts/default";
 import CardImg from "@/components/CardImg";
 import ModalShirt from "@/components/ModalShirt";

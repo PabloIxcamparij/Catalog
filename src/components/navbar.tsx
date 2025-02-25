@@ -1,6 +1,6 @@
 import { Navbar as HeroUINavbar, NavbarContent } from "@heroui/navbar";
 import { Select, SelectItem } from "@heroui/react";
-import { ThemeSwitch } from "@/components/theme-switch";
+import { ThemeSwitch } from "@/components/ThemesButton";
 import {teams} from "@/data/teams.json"
 
 

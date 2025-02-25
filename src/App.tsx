@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import IndexPage from "@/pages/index";
+import IndexPage from "@/pages/IndexPage";
 import FormNewShirt from "@/pages/FormNewShirt";
 
 function App() {
