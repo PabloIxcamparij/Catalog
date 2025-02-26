@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { shirtType, teamsType } from "@/types/index";
 import { supabase } from "@/supabaseClient";
 
@@ -7,6 +13,7 @@ type ShirtContextType = {
   setIsOpen: (open: boolean) => void;
   selectedShirt?: shirtType;
   filteredShirts: shirtType[];
+  shirtsWorld: shirtType[];
   isLoading: boolean;
   handleOpenModal: (shirt: shirtType) => void;
   setSelectedTeam: (team: string) => void;
@@ -18,11 +25,20 @@ const ShirtContext = createContext<ShirtContextType | undefined>(undefined);
 
 export const ShirtProvider = ({ children }: { children: ReactNode }) => {
   const [selectedTeam, setSelectedTeam] = useState("Todos");
+
   const [shirts, setShirts] = useState<shirtType[]>([]);
+
+  const [shirtsWorld, setShirtsWorld] = useState<shirtType[]>([]);
+
+
   const [selectedShirt, setSelectedShirt] = useState<shirtType>();
+
   const [filteredShirts, setFilteredShirts] = useState<shirtType[]>([]);
+
   const [isLoading, setIsLoading] = useState(true);
+
   const [isOpen, setIsOpen] = useState(false);
+
   const [teams, setTeams] = useState<teamsType[]>([]);
 
   // Fetch shirts
@@ -39,13 +55,27 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
     fetchShirts();
   }, []);
 
+  // Fetch shirts World
+  useEffect(() => {
+    const fetchShirtsWorld = async () => {
+      const { data, error } = await supabase.from("shirtWorld").select("*");
+      if (error) console.error("Error fetching shirts:", error);
+      else {
+        setShirtsWorld(data);
+      }
+      setIsLoading(false);
+      console.log(data)
+    };
+    fetchShirtsWorld();
+  }, []);
+
   // Fetch teams
   useEffect(() => {
     const fetchTeams = async () => {
       const { data, error } = await supabase
         .from("teams")
         .select("id, team, inserted_at, updated_at");
-  
+
       if (error) {
         console.error("Error fetching teams:", error);
       } else {
@@ -54,7 +84,7 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
     };
     fetchTeams();
   }, []);
-  
+
   // Filter shirts when selected team changes
   useEffect(() => {
     setFilteredShirts(
@@ -81,6 +111,9 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
         setSelectedTeam,
         selectedTeam,
         teams,
+
+        shirtsWorld
+
       }}
     >
       {children}
