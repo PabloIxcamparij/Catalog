@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
 import IndexPage from "@/pages/IndexPage";
-import FormNewShirt from "@/pages/FormNewShirt";
+import SoccerWorldPage from "@/pages/SoccerWorldPage";
 
 function App() {
   return (
     <Routes>
       <Route element={<IndexPage />} path="/" />
-      <Route element={<FormNewShirt />} path="/FormNewShirt" />
+      <Route element={<SoccerWorldPage />} path="/World" />
     </Routes>
   );
 }

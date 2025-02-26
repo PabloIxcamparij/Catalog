@@ -20,7 +20,7 @@ export default function IndexPage() {
         console.error("Error fetching shirts:", error);
       } else {
         setShirts(data);
-        setFilteredShirts(data); // Inicialmente, mostrar todos los datos
+        setFilteredShirts(data);
       }
       setIsLoading(false);
     };
@@ -48,7 +48,7 @@ export default function IndexPage() {
       <section className="flex flex-col items-center justify-center gap-4 mt-10">
         <div className="inline-block max-w-lg text-center justify-center">
           <span className={title({ color: "yellow" })}>Fantásticas </span>
-          <span className={title()}>camisas deportivas</span>
+          <span className={title()}>camisas de clubes</span>
           <div className={subtitle({ class: "mt-4" })}>
             Con variedad de equipos y tallas
           </div>
