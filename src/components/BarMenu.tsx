@@ -4,13 +4,22 @@ import { ThemeSwitch } from "@/components/ThemesButton";
 import { supabase } from "@/supabaseClient";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {teamsType} from "@/types/index"
 
-export const BarMenu = ({ onSelectTeam, scrollToFooter }: any) => {
-  const [teams, setTeams] = useState<any[]>([]);
+
+type BarMenuProps = {
+  onSelectTeam: (teamName: string) => void;
+  scrollToFooter: () => void;
+};
+
+
+export const BarMenu = ({ onSelectTeam, scrollToFooter }: BarMenuProps) => {
+
+  const [teams, setTeams] = useState<teamsType[]>([]);
 
   useEffect(() => {
     const fetchTeams = async () => {
-      const { data, error } = await supabase.from("teams").select("id, team");
+      const { data , error} = await supabase.from("teams").select("id, team, inserted_at, updated_at");
       if (error) {
         console.error("Error fetching teams:", error);
       } else {

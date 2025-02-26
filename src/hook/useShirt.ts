@@ -1,20 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-
-import DefaultLayout from "./layouts/default";
-import IndexPage from "@/pages/IndexPage";
-import SoccerWorldPage from "@/pages/SoccerWorldPage";
-
-
 import { useState, useEffect } from "react";
+import { shirtType } from "@/types/index";
 import { supabase } from "@/supabaseClient";
 
-import { shirtType } from "@/types/index";
-function App() {
-
-  const [selectedTeam, setSelectedTeam] = useState("Todos");
+export const useShirt = () => {
+  const [selectedTeam] = useState("Todos");
 
   const [shirts, setShirts] = useState<shirtType[]>([]);
-  const [selectedShirt, setSelectedShirt] = useState<shirtType> ();
+  const [selectedShirt, setSelectedShirt] = useState<shirtType>();
   const [filteredShirts, setFilteredShirts] = useState<shirtType[]>([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -43,15 +35,17 @@ function App() {
     }
   }, [selectedTeam, shirts]);
 
+  const handleOpenModal = (shirt: shirtType) => {
+    setSelectedShirt(shirt);
+    setIsOpen(true);
+  };
 
-  return (
-    <Routes>
-      <Route element={<DefaultLayout onSelectTeam={setSelectedTeam} />}>
-        <Route element={<IndexPage />} path="/" />
-        <Route element={<SoccerWorldPage />} path="/World" />
-      </Route>
-    </Routes>
-  );
-}
-
-export default App;
+  return {
+    isOpen,
+    setIsOpen,
+    selectedShirt,
+    filteredShirts,
+    isLoading,
+    handleOpenModal
+  };
+};

@@ -2,8 +2,13 @@ import { BarMenu } from "@/components/BarMenu";
 import { Image } from "@heroui/image";
 import { useRef } from "react";
 import { useTheme } from "@/hook/useTheme";
+import { Outlet } from "react-router-dom";
 
-export default function DefaultLayout({ children, onSelectTeam }: any) {
+type DefaultLayoutProps = {
+  onSelectTeam: (teamName: string) => void;
+}
+
+export default function DefaultLayout({ onSelectTeam }: DefaultLayoutProps) {
   const footerRef = useRef<HTMLElement | null>(null);
   const theme = useTheme(); // Obtenemos el tema actual
 
@@ -18,7 +23,7 @@ export default function DefaultLayout({ children, onSelectTeam }: any) {
       <BarMenu onSelectTeam={onSelectTeam} scrollToFooter={scrollToFooter} />
 
       <main className="flex flex-col items-center justify-center gap-5 flex-grow">
-        {children}
+      <Outlet/>
       </main>
 
       <footer
