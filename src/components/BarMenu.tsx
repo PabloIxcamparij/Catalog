@@ -1,21 +1,27 @@
 import { Navbar as HeroUINavbar, NavbarContent } from "@heroui/navbar";
 import { Select, SelectItem } from "@heroui/react";
 import { ThemeSwitch } from "@/components/ThemesButton";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import { useShirt } from "@/context/ShirtContext";
+import { useEffect } from "react";
 
 export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
-  const { teams, setSelectedTeam } = useShirt();
+  const { teams, teamsNational, setSelectedTeam, setSelectedTeamNational } =
+    useShirt();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const navigateHome = () => {
-    navigate("/");
-  };
+  const navigateHome = () => navigate("/");
+  const navigateSoccerWorldShirt = () => navigate("/World");
 
-  const navigateSoccerWorldShirt = () => {
-    navigate("/World");
-  };
+  // What route the page is
+  const currentTeams = location.pathname === "/World" ? teamsNational : teams;
+  const currentTeamsSelect =
+    location.pathname === "/World" ? setSelectedTeamNational : setSelectedTeam;
+
+  useEffect(() => {
+    currentTeamsSelect("Todos");
+  }, [location.pathname]);
 
   return (
     <HeroUINavbar position="sticky">
@@ -25,18 +31,18 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
           label="Menu"
           placeholder="Seleccione"
           color={"warning"}
-          selectionMode="none"
+          data-fill={1}
         >
-          <SelectItem key={1} textValue="Comprar" onClick={scrollToFooter}>
+          <SelectItem key={1} textValue="Comprar" onPress={scrollToFooter}>
             Compra
           </SelectItem>
-          <SelectItem key={2} textValue="Clubes" onClick={navigateHome}>
+          <SelectItem key={2} textValue="Clubes" onPress={navigateHome}>
             Clubes
           </SelectItem>
           <SelectItem
             key={3}
             textValue="Mundiales"
-            onClick={navigateSoccerWorldShirt}
+            onPress={navigateSoccerWorldShirt}
           >
             Mundiales
           </SelectItem>
@@ -49,16 +55,17 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
           color="warning"
           onSelectionChange={(selectedKeys) => {
             const selectedTeamId = Array.from(selectedKeys)[0];
-            const selectedTeam = teams.find(
+
+            const selectedTeam  : any = currentTeams.find(
               (team) => team.id.toString() === selectedTeamId
             );
 
             if (selectedTeam) {
-              setSelectedTeam(selectedTeam.team);
+              currentTeamsSelect(selectedTeam.team);
             }
           }}
         >
-          {teams.map((team) => (
+          {currentTeams.map((team) => (
             <SelectItem key={team.id} textValue={team.team}>
               {team.team}
             </SelectItem>

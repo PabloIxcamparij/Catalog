@@ -13,33 +13,38 @@ type ShirtContextType = {
   setIsOpen: (open: boolean) => void;
   selectedShirt?: shirtType;
   filteredShirts: shirtType[];
-  shirtsWorld: shirtType[];
+  filteredShirtsWorld: shirtType[];
   isLoading: boolean;
   handleOpenModal: (shirt: shirtType) => void;
   setSelectedTeam: (team: string) => void;
+  setSelectedTeamNational: (team: string) => void;
+
   selectedTeam: string;
+  selectedTeamNational: string;
+
   teams: teamsType[];
+  teamsNational: teamsType[];
 };
 
 const ShirtContext = createContext<ShirtContextType | undefined>(undefined);
 
 export const ShirtProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedTeam, setSelectedTeam] = useState("Todos");
-
-  const [shirts, setShirts] = useState<shirtType[]>([]);
-
-  const [shirtsWorld, setShirtsWorld] = useState<shirtType[]>([]);
-
-
   const [selectedShirt, setSelectedShirt] = useState<shirtType>();
 
-  const [filteredShirts, setFilteredShirts] = useState<shirtType[]>([]);
+  const [selectedTeam, setSelectedTeam] = useState("Todos");
+  const [selectedTeamNational, setSelectedTeamNational] = useState("Todos");
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [shirts, setShirts] = useState<shirtType[]>([]);
+  const [shirtsWorld, setShirtsWorld] = useState<shirtType[]>([]);
+
+  const [filteredShirts, setFilteredShirts] = useState<shirtType[]>([]);
+  const [filteredShirtsWorld, setFilteredShirtsWorld] = useState<shirtType[]>([]);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [teams, setTeams] = useState<teamsType[]>([]);
+  const [teamsNational, setTeamsNational] = useState<teamsType[]>([]);
 
   // Fetch shirts
   useEffect(() => {
@@ -62,9 +67,9 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
       if (error) console.error("Error fetching shirts:", error);
       else {
         setShirtsWorld(data);
+        setFilteredShirtsWorld(data);
       }
       setIsLoading(false);
-      console.log(data)
     };
     fetchShirtsWorld();
   }, []);
@@ -85,6 +90,23 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
     fetchTeams();
   }, []);
 
+  // Fetch national teams
+  useEffect(() => {
+    const fetchTeamsNational = async () => {
+      const { data, error } = await supabase
+        .from("nationalTeams")
+        .select("id, team, inserted_at, updated_at");
+
+      if (error) {
+        console.error("Error fetching teams:", error);
+      } else {
+        const sortedData = data.sort((a, b) => (a.id === 1 ? -1 : b.id === 1 ? 1 : 0));
+        setTeamsNational(sortedData as teamsType[]);
+      }
+    };
+    fetchTeamsNational();
+  }, []);
+
   // Filter shirts when selected team changes
   useEffect(() => {
     setFilteredShirts(
@@ -93,6 +115,15 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
         : shirts.filter((shirt) => shirt.team === selectedTeam)
     );
   }, [selectedTeam, shirts]);
+
+  // Filter shirts when selected team World changes
+  useEffect(() => {
+    setFilteredShirtsWorld(
+      selectedTeamNational === "Todos"
+        ? shirtsWorld
+        : shirtsWorld.filter((shirt) => shirt.team === selectedTeamNational)
+    );
+  }, [selectedTeamNational, shirtsWorld]);
 
   const handleOpenModal = (shirt: shirtType) => {
     setSelectedShirt(shirt);
@@ -112,8 +143,10 @@ export const ShirtProvider = ({ children }: { children: ReactNode }) => {
         selectedTeam,
         teams,
 
-        shirtsWorld
-
+        filteredShirtsWorld,
+        teamsNational,
+        selectedTeamNational,
+        setSelectedTeamNational,
       }}
     >
       {children}

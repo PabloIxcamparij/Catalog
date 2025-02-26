@@ -9,7 +9,7 @@ export default function SoccerWorldPage() {
     setIsOpen,
     isLoading,
     selectedShirt,
-    shirtsWorld,
+    filteredShirtsWorld,
     handleOpenModal,
   } = useShirt();
 
@@ -35,8 +35,8 @@ export default function SoccerWorldPage() {
         <p className="text-center mt-5">Cargando camisas...</p>
       ) : (
         <section className="flex flex-wrap justify-center gap-4">
-          {shirtsWorld.length > 0 ? (
-            shirtsWorld.map((shirt, index) => (
+          {filteredShirtsWorld.length > 0 ? (
+            filteredShirtsWorld.map((shirt, index) => (
               <CardImg
                 key={index}
                 shirt={shirt}
