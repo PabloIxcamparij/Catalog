@@ -1,12 +1,21 @@
 import { Navbar as HeroUINavbar, NavbarContent } from "@heroui/navbar";
 import { Select, SelectItem } from "@heroui/react";
 import { ThemeSwitch } from "@/components/ThemesButton";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useShirt } from "@/context/ShirtContext";
 
 export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
   const { teams, setSelectedTeam } = useShirt();
+  const navigate = useNavigate();
+
+  const navigateHome = () => {
+    navigate("/");
+  };
+
+  const navigateSoccerWorldShirt = () => {
+    navigate("/World");
+  };
 
   return (
     <HeroUINavbar position="sticky">
@@ -16,15 +25,20 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
           label="Menu"
           placeholder="Seleccione"
           color={"warning"}
+          selectionMode="none"
         >
           <SelectItem key={1} textValue="Comprar" onClick={scrollToFooter}>
             Compra
           </SelectItem>
-          <SelectItem key={2} textValue="Clubes">
-            <Link to={"/"}> Clubes</Link>
+          <SelectItem key={2} textValue="Clubes" onClick={navigateHome}>
+            Clubes
           </SelectItem>
-          <SelectItem key={3} textValue="Mundiales">
-            <Link to={"/World"}> Mundiales</Link>
+          <SelectItem
+            key={3}
+            textValue="Mundiales"
+            onClick={navigateSoccerWorldShirt}
+          >
+            Mundiales
           </SelectItem>
         </Select>
 
