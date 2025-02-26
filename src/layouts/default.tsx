@@ -4,13 +4,10 @@ import { useRef } from "react";
 import { useTheme } from "@/hook/useTheme";
 import { Outlet } from "react-router-dom";
 
-type DefaultLayoutProps = {
-  onSelectTeam: (teamName: string) => void;
-}
 
-export default function DefaultLayout({ onSelectTeam }: DefaultLayoutProps) {
+export default function DefaultLayout() {
   const footerRef = useRef<HTMLElement | null>(null);
-  const theme = useTheme(); // Obtenemos el tema actual
+  const theme = useTheme(); 
 
   const scrollToFooter = () => {
     if (footerRef.current) {
@@ -20,7 +17,7 @@ export default function DefaultLayout({ onSelectTeam }: DefaultLayoutProps) {
 
   return (
     <div className="relative flex flex-col h-screen">
-      <BarMenu onSelectTeam={onSelectTeam} scrollToFooter={scrollToFooter} />
+      <BarMenu scrollToFooter={scrollToFooter} />
 
       <main className="flex flex-col items-center justify-center gap-5 flex-grow">
       <Outlet/>

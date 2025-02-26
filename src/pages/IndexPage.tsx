@@ -2,17 +2,10 @@ import { title, subtitle } from "@/components/Themes";
 import CardImg from "@/components/CardImg";
 import ModalShirt from "@/components/ModalShirt";
 
-import { useShirt } from "@/hook/useShirt";
+import { useShirt } from "@/context/ShirtContext";
 
 export default function IndexPage() {
-  const {
-    isOpen,
-    setIsOpen,
-    isLoading,
-    selectedShirt,
-    filteredShirts,
-    handleOpenModal,
-  } = useShirt();
+  const { isOpen, setIsOpen, isLoading, selectedShirt, filteredShirts, handleOpenModal } = useShirt();
 
   return (
     <>

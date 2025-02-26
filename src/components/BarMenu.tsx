@@ -1,33 +1,12 @@
 import { Navbar as HeroUINavbar, NavbarContent } from "@heroui/navbar";
 import { Select, SelectItem } from "@heroui/react";
 import { ThemeSwitch } from "@/components/ThemesButton";
-import { supabase } from "@/supabaseClient";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {teamsType} from "@/types/index"
 
+import { useShirt } from "@/context/ShirtContext";
 
-type BarMenuProps = {
-  onSelectTeam: (teamName: string) => void;
-  scrollToFooter: () => void;
-};
-
-
-export const BarMenu = ({ onSelectTeam, scrollToFooter }: BarMenuProps) => {
-
-  const [teams, setTeams] = useState<teamsType[]>([]);
-
-  useEffect(() => {
-    const fetchTeams = async () => {
-      const { data , error} = await supabase.from("teams").select("id, team, inserted_at, updated_at");
-      if (error) {
-        console.error("Error fetching teams:", error);
-      } else {
-        setTeams(data);
-      }
-    };
-    fetchTeams();
-  }, []);
+export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
+  const { teams, setSelectedTeam } = useShirt();
 
   return (
     <HeroUINavbar position="sticky">
@@ -53,13 +32,15 @@ export const BarMenu = ({ onSelectTeam, scrollToFooter }: BarMenuProps) => {
           className="w-3/4"
           label="Equipo"
           placeholder="Seleccione el equipo"
-          color={"warning"}
+          color="warning"
           onSelectionChange={(selectedKeys) => {
+            const selectedTeamId = Array.from(selectedKeys)[0];
             const selectedTeam = teams.find(
-              (team) => team.id.toString() === Array.from(selectedKeys)[0]
+              (team) => team.id.toString() === selectedTeamId
             );
+
             if (selectedTeam) {
-              onSelectTeam(selectedTeam.team);
+              setSelectedTeam(selectedTeam.team);
             }
           }}
         >

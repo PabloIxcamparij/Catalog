@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from "react";
-import { shirtType } from "@/types/index";
+import { shirtType, teamsType } from "@/types/index";
 import { supabase } from "@/supabaseClient";
 
+
 export const useShirt = () => {
-  const [selectedTeam] = useState("Todos");
+
+  const [selectedTeam, setSelectedTeam] = useState("Todos");
 
   const [shirts, setShirts] = useState<shirtType[]>([]);
   const [selectedShirt, setSelectedShirt] = useState<shirtType>();
@@ -40,12 +43,32 @@ export const useShirt = () => {
     setIsOpen(true);
   };
 
+  // In NavBar
+  const [teams, setTeams] = useState<teamsType[]>([]);
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      const { data, error } = await supabase
+        .from("teams")
+        .select("id, team, inserted_at, updated_at");
+      if (error) {
+        console.error("Error fetching teams:", error);
+      } else {
+        setTeams(data);
+      }
+    };
+    fetchTeams();
+  }, []);
+
   return {
     isOpen,
     setIsOpen,
     selectedShirt,
     filteredShirts,
     isLoading,
-    handleOpenModal
+    handleOpenModal,
+    setSelectedTeam,
+    selectedTeam,
+    teams
   };
 };
