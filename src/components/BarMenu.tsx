@@ -15,6 +15,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useShirt } from "@/context/ShirtContext";
 import { useEffect } from "react";
 
+import { useTheme } from "@/hook/useTheme";
+
 export const AcmeLogo = () => {
   return (
     <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
@@ -51,6 +53,8 @@ export const ChevronDown = ({ fill, size, height, width, ...props }: any) => {
 };
 
 export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
+  const theme = useTheme();
+
   const { teams, teamsNational, setSelectedTeam, setSelectedTeamNational } =
     useShirt();
   const navigate = useNavigate();
@@ -63,6 +67,7 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
   const currentTeams = location.pathname === "/World" ? teamsNational : teams;
   const currentTeamsSelect =
     location.pathname === "/World" ? setSelectedTeamNational : setSelectedTeam;
+  const currentThemes = theme === "light" ? "black" : "white";
 
   useEffect(() => {
     currentTeamsSelect("Todos");
@@ -114,7 +119,7 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
                 >
                   <path
                     d="M3 3H5L6 8M6 8H19L21 12H7M6 8L7 12M10 17C9.44772 17 9 17.4477 9 18C9 18.5523 9.44772 19 10 19C10.5523 19 11 18.5523 11 18C11 17.4477 10.5523 17 10 17ZM17 17C16.4477 17 16 17.4477 16 18C16 18.5523 16.4477 19 17 19C17.5523 19 18 18.5523 18 18C18 17.4477 17.5523 17 17 17Z"
-                    stroke="black"
+                    stroke={currentThemes}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -139,7 +144,7 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
                 >
                   <path
                     d="M12 2L3 6V12C3 17.5 7 21 12 22C17 21 21 17.5 21 12V6L12 2Z"
-                    stroke="black"
+                    stroke={currentThemes}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -166,12 +171,12 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
                     cx="12"
                     cy="12"
                     r="10"
-                    stroke="black"
+                    stroke={currentThemes}
                     strokeWidth="2"
                   />
                   <path
                     d="M12 2C14 4 16 8 16 12C16 16 14 20 12 22M12 2C10 4 8 8 8 12C8 16 10 20 12 22M2 12H22"
-                    stroke="black"
+                    stroke={currentThemes}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -205,7 +210,6 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
             {currentTeams.map((team) => (
               <DropdownItem
                 key={team.id}
-                description={team.team}
                 onPress={() => currentTeamsSelect(team.team)}
               >
                 {team.team}
@@ -219,33 +223,5 @@ export const BarMenu = ({ scrollToFooter }: { scrollToFooter: () => void }) => {
         <ThemeSwitch />
       </NavbarContent>
     </Navbar>
-
-    // <HeroUINavbar position="sticky" shouldHideOnScroll>
-    //   <NavbarContent className="w-full h-2/4 flex flex-wrap md:flex-nowrap items-center justify-center mt-10 gap-4">
-    //     <Select
-    //       className="w-full lg:w-3/4"
-    //       label="Equipo"
-    //       placeholder="Seleccione el equipo"
-    //       color="warning"
-    //       onSelectionChange={(selectedKeys) => {
-    //         const selectedTeamId = Array.from(selectedKeys)[0];
-
-    //         const selectedTeam: any = currentTeams.find(
-    //           (team) => team.id.toString() === selectedTeamId
-    //         );
-
-    //         if (selectedTeam) {
-    //           currentTeamsSelect(selectedTeam.team);
-    //         }
-    //       }}
-    //     >
-    //       {currentTeams.map((team) => (
-    //         <SelectItem key={team.id} textValue={team.team}>
-    //           {team.team}
-    //         </SelectItem>
-    //       ))}
-    //     </Select>
-    //   </NavbarContent>
-    // </HeroUINavbar>
   );
 };

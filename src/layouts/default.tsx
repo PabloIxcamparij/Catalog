@@ -35,7 +35,7 @@ export default function DefaultLayout() {
           href="https://wa.me/50663439380"
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex items-center justify-center w-16 h-16 rounded-full 
+          className={`flex items-center justify-center w-14 h-14 rounded-full 
             ${theme === "dark" ? "hover:bg-green-600" : "hover:bg-green-200"}`}
         >
           <Image src="/whatsapp.svg" alt="WhatsApp" />
